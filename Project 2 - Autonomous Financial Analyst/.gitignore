@@ -1,0 +1,8 @@
+# Ignore API configuration file
+config.json
+
+# Python Virtual Environments
+.venv/
+
+# Content Folder
+.content/
