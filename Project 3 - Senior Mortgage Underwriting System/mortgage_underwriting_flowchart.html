@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Mortgage Underwriting - Agentic AI System Flowchart</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-navy: #0f2d52;
+            --primary-gold: #d4af37;
+            --accent-teal: #006b7d;
+            --bg-cream: #faf8f3;
+            --text-dark: #1a1a1a;
+            --border-subtle: #e5dfd6;
+            --shadow-soft: rgba(15, 45, 82, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-cream) 0%, #ffffff 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Decorative background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(30deg, transparent 48%, var(--border-subtle) 48%, var(--border-subtle) 52%, transparent 52%),
+                linear-gradient(120deg, transparent 48%, var(--border-subtle) 48%, var(--border-subtle) 52%, transparent 52%);
+            background-size: 80px 80px;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .header {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1a4d7a 100%);
+            color: white;
+            padding: 3rem 2rem 2.5rem;
+            box-shadow: 0 8px 32px var(--shadow-soft);
+            border-bottom: 3px solid var(--primary-gold);
+            z-index: 10;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--primary-gold) 0%, 
+                var(--accent-teal) 50%, 
+                var(--primary-gold) 100%);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--primary-navy);
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .container {
+            position: relative;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .info-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 24px var(--shadow-soft);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-gold), var(--accent-teal));
+        }
+
+        .info-panel h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-navy);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f6f2 0%, #ffffff 100%);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(15, 45, 82, 0.1);
+        }
+
+        .info-card h3 {
+            color: var(--accent-teal);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .legend {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 24px var(--shadow-soft);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .legend h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-navy);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #fafafa;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .legend-item:hover {
+            background: #f0f0f0;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .legend-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            box-shadow: 0 8px 40px var(--shadow-soft);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: auto;
+            min-height: 800px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(15, 45, 82, 0.2);
+            letter-spacing: 0.3px;
+        }
+
+        .btn:hover {
+            background: var(--accent-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 107, 125, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-navy);
+            border: 2px solid var(--primary-navy);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        #mermaid-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            margin: 2rem auto;
+        }
+
+        /* Mermaid specific styling */
+        .mermaid svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .info-panel, .legend, .chart-container {
+                padding: 1.5rem;
+            }
+
+            .info-grid, .legend-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: var(--accent-teal);
+            font-size: 1.1rem;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        /* Print styles */
+        @media print {
+            body::before {
+                display: none;
+            }
+
+            .controls, .btn {
+                display: none;
+            }
+
+            .header {
+                background: var(--primary-navy);
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        /* FAQ Styles */
+        .faq-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 24px var(--shadow-soft);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-gold), var(--accent-teal));
+        }
+
+        .faq-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-navy);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .faq-intro {
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .faq-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .faq-category-badge {
+            background: linear-gradient(135deg, #f8f6f2 0%, #ffffff 100%);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-teal);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .faq-category-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 107, 125, 0.2);
+            border-color: var(--accent-teal);
+        }
+
+        .faq-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-category-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-navy);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-gold);
+            font-weight: 600;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(15, 45, 82, 0.08);
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1rem;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+
+        .faq-question.active {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f7ff 100%);
+            color: var(--primary-navy);
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--accent-teal);
+            font-weight: bold;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-answer.active {
+            max-height: 2000px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer li {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer strong {
+            color: var(--primary-navy);
+            font-weight: 600;
+        }
+
+        .faq-answer code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #d32f2f;
+        }
+
+        .faq-highlight {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe8cc 100%);
+            border-left: 3px solid var(--primary-gold);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .faq-formula {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 1rem 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .faq-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .faq-table th {
+            background: var(--primary-navy);
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .faq-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .faq-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 Senior Mortgage Underwriting System</h1>
+        <div class="subtitle">Multi-Agent AI Workflow for Automated Loan Analysis</div>
+        <div class="badge">LangGraph • OpenAI GPT-4o • Human-in-the-Loop</div>
+    </div>
+
+    <div class="container">
+        <div class="info-panel">
+            <h2>System Overview</h2>
+            <p>This flowchart visualizes a comprehensive agentic AI system for mortgage underwriting that automates credit analysis, income verification, asset assessment, and collateral evaluation while maintaining compliance with Fair Lending regulations and implementing human oversight for high-risk decisions.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Specialized Agents</h3>
+                    <p>Credit, Income, Asset, and Collateral analysts perform parallel analysis using domain-specific tools and reasoning</p>
+                </div>
+                <div class="info-card">
+                    <h3>Coordination Layer</h3>
+                    <p>Supervisor routes workflow, Critic ensures quality, Decision agent synthesizes final recommendations</p>
+                </div>
+                <div class="info-card">
+                    <h3>Compliance & Security</h3>
+                    <p>PII sanitization, bias detection, policy RAG retrieval, and audit trail generation</p>
+                </div>
+                <div class="info-card">
+                    <h3>Human-in-the-Loop</h3>
+                    <p>High-risk cases (score >70) and bias-flagged applications require senior underwriter review</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <h2>Flowchart Legend</h2>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e1f5e1; border-color: #4caf50;"></div>
+                    <div class="legend-label">Start/End Points</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e3f2fd; border-color: #2196f3;"></div>
+                    <div class="legend-label">Standard Process</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f3e5f5; border-color: #9c27b0;"></div>
+                    <div class="legend-label">AI Agents</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #fff3e0; border-color: #ff9800;"></div>
+                    <div class="legend-label">Decision Points</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ffebee; border-color: #f44336;"></div>
+                    <div class="legend-label">Security/Compliance</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #fff9c4; border-color: #fbc02d;"></div>
+                    <div class="legend-label">Human Review</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="zoomIn()">🔍 Zoom In</button>
+            <button class="btn" onclick="zoomOut()">🔍 Zoom Out</button>
+            <button class="btn" onclick="resetZoom()">↺ Reset View</button>
+            <button class="btn btn-secondary" onclick="downloadSVG()">⬇️ Download SVG</button>
+            <button class="btn btn-secondary" onclick="window.print()">🖨️ Print</button>
+        </div>
+
+        <div class="chart-container">
+            <div id="mermaid-diagram" class="loading">Loading flowchart</div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-divider"></div>
+            <p><strong>Johns Hopkins University</strong> • Final Project: Agentic AI</p>
+            <p>Senior Mortgage Underwriting System • Multi-Agent Workflow Architecture</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">Built with LangGraph, LangChain, ChromaDB, and OpenAI GPT-4o-mini</p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: false,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: 'DM Sans, sans-serif'
+            }
+        });
+
+        // Mermaid diagram code - CORRECT & DETAILED VERSION
+        const diagramCode = `graph TD
+    %% ============================================
+    %% INPUT LAYER - Data Entry & Security
+    %% ============================================
+    subgraph Input_Layer [" 📥 INPUT LAYER - Data Entry & Security "]
+        A[🗂️ Raw Loan Application Data<br/>JSON/Database Load<br/>All Borrower Information] --> B[⚙️ Initialize State<br/>Setup Workflow Context<br/>Load RAG Policies]
+        B --> C{🔒 PII Sanitization<br/>Security Layer}
+        C -->|Redact: SSN, Names,<br/>Addresses, Phone, Email| D[✅ Sanitized Application State<br/>ChromaDB Vector Store Ready<br/>Policy Retrieval Active]
+    end
+    
+    %% ============================================
+    %% SPECIALIST LAYER - Agent Analysis
+    %% ============================================
+    subgraph Specialist_Layer [" 🤖 SPECIALIST LAYER - Multi-Agent Analysis "]
+        D --> E{🎯 Supervisor Agent<br/>Workflow Router<br/>Sequential Orchestration}
+        
+        E -->|Route 1:<br/>Credit Analysis| F[💳 Credit Analyst Agent<br/>━━━━━━━━━━━━━━━━<br/>✓ FICO Score Analysis<br/>✓ Payment History Review<br/>✓ Derogatory Items Check<br/>✓ Credit Utilization<br/>✓ Bankruptcy/Foreclosure<br/>✓ Collections Assessment<br/>━━━━━━━━━━━━━━━━<br/>Risk: 0-25 points]
+        
+        E -->|Route 2:<br/>Income Analysis| G[💵 Income Analyst Agent<br/>━━━━━━━━━━━━━━━━<br/>✓ DTI Calculation<br/>✓ Employment Verification<br/>✓ Income Stability Check<br/>✓ W2 vs Self-Employed<br/>✓ Bonus/Commission Review<br/>✓ Employment Gap Analysis<br/>━━━━━━━━━━━━━━━━<br/>Risk: 0-25 points]
+        
+        E -->|Route 3:<br/>Asset Analysis| H[💰 Asset Analyst Agent<br/>━━━━━━━━━━━━━━━━<br/>✓ Reserve Calculation<br/>✓ Down Payment Verification<br/>✓ Large Deposit Review<br/>✓ Gift Fund Documentation<br/>✓ Asset Seasoning Check<br/>✓ Source of Funds<br/>━━━━━━━━━━━━━━━━<br/>Risk: 0-25 points]
+        
+        E -->|Route 4:<br/>Collateral Analysis| I[🏠 Collateral Analyst Agent<br/>━━━━━━━━━━━━━━━━<br/>✓ LTV Ratio Calculation<br/>✓ Property Condition C1-C6<br/>✓ Appraisal Review<br/>✓ Required Repairs<br/>✓ Market Conditions<br/>✓ Property Type/Use<br/>━━━━━━━━━━━━━━━━<br/>Risk: 0-25 points]
+        
+        F -->|Credit Score & History<br/>Write to State| E
+        G -->|DTI & Income Stability<br/>Write to State| E
+        H -->|Reserves & Deposit Review<br/>Write to State| E
+        I -->|LTV & Property Condition<br/>Write to State| E
+    end
+    
+    %% ============================================
+    %% COORDINATION LAYER - Quality & Decision
+    %% ============================================
+    subgraph Coordination_Layer [" ⚖️ COORDINATION LAYER - Quality Assurance & Decision "]
+        E -->|All 4 Analyses<br/>Complete| J[🔍 Critic Agent<br/>Quality Assurance<br/>━━━━━━━━━━━━━━━━<br/>✓ Cross-Reference Reports<br/>✓ Consistency Validation<br/>✓ RAG Policy Compliance<br/>✓ Bias Detection Scan<br/>✓ Gap Identification<br/>━━━━━━━━━━━━━━━━<br/>Fair Lending Act Check]
+        
+        J -->|QA Approved &<br/>Bias-Free| K[🎯 Decision Agent<br/>Final Synthesis<br/>━━━━━━━━━━━━━━━━<br/>✓ Aggregate All Findings<br/>✓ Apply Underwriting Rules<br/>✓ Consider Compensating Factors<br/>✓ Generate Recommendation<br/>━━━━━━━━━━━━━━━━<br/>Holistic Risk Assessment]
+        
+        K -->|Calculate<br/>Risk Score| L[📊 Risk Scoring System<br/>0-100 Point Scale<br/>━━━━━━━━━━━━━━━━<br/>Credit: 0-25 pts<br/>Income: 0-25 pts<br/>Assets: 0-25 pts<br/>Collateral: 0-25 pts<br/>━━━━━━━━━━━━━━━━<br/>Total Risk Score]
+    end
+    
+    %% ============================================
+    %% OUTPUT LAYER - Final Review & Documentation
+    %% ============================================
+    subgraph Output_Layer [" 📋 OUTPUT LAYER - Final Review & Audit Trail "]
+        L --> M{🔀 Decision Logic<br/>Risk Assessment}
+        
+        M -->|Score < 30<br/>Low Risk| M1[✅ APPROVED<br/>No Conditions<br/>Best Terms]
+        M -->|Score 30-70<br/>Medium Risk| M2[⚠️ CONDITIONAL<br/>With Stipulations<br/>Document Requirements]
+        M -->|Score > 70<br/>High Risk| M3[❌ DENIED<br/>or High-Risk Flag<br/>Requires Review]
+        
+        M1 --> N[👤 Human-in-the-Loop<br/>Senior Underwriter Review<br/>━━━━━━━━━━━━━━━━<br/>Optional for Low Risk<br/>Required for High Risk<br/>Required if Bias Detected<br/>━━━━━━━━━━━━━━━━<br/>Final Authority]
+        M2 --> N
+        M3 --> N
+        
+        N --> O[📄 Final Credit Memo<br/>━━━━━━━━━━━━━━━━<br/>✓ Decision Summary<br/>✓ Risk Score Breakdown<br/>✓ Key Findings<br/>✓ Conditions Listed<br/>✓ Underwriter Notes<br/>━━━━━━━━━━━━━━━━<br/>Borrower Communication]
+        
+        N --> P[📊 Executive Summary<br/>━━━━━━━━━━━━━━━━<br/>✓ Application Overview<br/>✓ Borrower Profile<br/>✓ Financial Metrics<br/>✓ Property Details<br/>✓ Final Recommendation<br/>━━━━━━━━━━━━━━━━<br/>Management Reporting]
+        
+        N --> Q[🗂️ Complete Audit Trail<br/>━━━━━━━━━━━━━━━━<br/>✓ Reasoning Chain<br/>✓ Agent Timestamped Logs<br/>✓ Policy Retrievals<br/>✓ State Changes<br/>✓ Human Decisions<br/>✓ Bias Scan Results<br/>━━━━━━━━━━━━━━━━<br/>Regulatory Compliance<br/>Fair Lending Documentation]
+        
+        O --> R[🔔 Notification System]
+        P --> R
+        Q --> R
+        R --> S[📤 LOS Integration<br/>Loan Origination System Sync<br/>Status Update]
+        S --> T([🏁 COMPLETE<br/>Decision Recorded<br/>Case Closed])
+    end
+    
+    %% ============================================
+    %% FEEDBACK LOOP (if Critic finds issues)
+    %% ============================================
+    J -.->|Quality Issues<br/>Re-Analysis Required| E
+    
+    %% ============================================
+    %% STYLING - Color-Coded by Function
+    %% ============================================
+    
+    %% Input/Output Nodes
+    style A fill:#e1f5e1,stroke:#4caf50,stroke-width:3px,color:#000
+    style T fill:#e1f5e1,stroke:#4caf50,stroke-width:3px,color:#000
+    
+    %% Process Nodes
+    style B fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    style C fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    style D fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    style L fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    style R fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    style S fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    
+    %% Decision Nodes
+    style E fill:#fff3e0,stroke:#ff9800,stroke-width:3px,color:#000
+    style M fill:#fff3e0,stroke:#ff9800,stroke-width:3px,color:#000
+    
+    %% Agent Nodes
+    style F fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style G fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style H fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style I fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style J fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style K fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    
+    %% Decision Output Nodes
+    style M1 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#000
+    style M2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style M3 fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+    
+    %% Human Review & Documentation
+    style N fill:#fff9c4,stroke:#fbc02d,stroke-width:4px,color:#000
+    style O fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    style P fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    style Q fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    
+    %% Subgraph Styling
+    style Input_Layer fill:#f0f4f8,stroke:#333,stroke-width:2px
+    style Specialist_Layer fill:#fef6e4,stroke:#333,stroke-width:2px
+    style Coordination_Layer fill:#e8f5e9,stroke:#333,stroke-width:2px
+    style Output_Layer fill:#e3f2fd,stroke:#333,stroke-width:2px`;
+
+        // Render diagram
+        async function renderDiagram() {
+            const element = document.getElementById('mermaid-diagram');
+            try {
+                const { svg } = await mermaid.render('mermaid-svg', diagramCode);
+                element.innerHTML = svg;
+            } catch (error) {
+                element.innerHTML = `<div style="color: #f44336; padding: 2rem;">
+                    <h3>Error rendering diagram</h3>
+                    <p>${error.message}</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Please refresh the page or check the console for details.</p>
+                </div>`;
+                console.error('Mermaid rendering error:', error);
+            }
+        }
+
+        // Zoom controls
+        let currentZoom = 1;
+        function zoomIn() {
+            currentZoom += 0.1;
+            applyZoom();
+        }
+
+        function zoomOut() {
+            currentZoom = Math.max(0.3, currentZoom - 0.1);
+            applyZoom();
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            applyZoom();
+        }
+
+        function applyZoom() {
+            const diagram = document.querySelector('#mermaid-diagram svg');
+            if (diagram) {
+                diagram.style.transform = `scale(${currentZoom})`;
+                diagram.style.transformOrigin = 'top center';
+            }
+        }
+
+        // Download SVG
+        function downloadSVG() {
+            const svg = document.querySelector('#mermaid-diagram svg');
+            if (!svg) return;
+
+            const serializer = new XMLSerializer();
+            const svgString = serializer.serializeToString(svg);
+            const blob = new Blob([svgString], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mortgage_underwriting_flowchart.svg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // FAQ Toggle Functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+            
+            // Toggle active state
+            element.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+
+        // Scroll to FAQ section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', renderDiagram);
+    </script>
+</body>
+</html>
