@@ -1,0 +1,10 @@
+#ENV
+.env
+
+
+#Other
+Original_Notebook copy.ipynb
+
+
+# Virtual Environments
+.venv/*
